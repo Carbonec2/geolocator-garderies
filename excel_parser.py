@@ -1,7 +1,5 @@
 import csv
-
 import pandas
-import sys
 
 
 class ExcelParser:
@@ -10,23 +8,12 @@ class ExcelParser:
         self.workbook = pandas.read_excel(path, sheet_name=sheet_name)
         self.workbook.head()
 
-        f = open('output.csv','w')
+        f = open('output.csv', 'w')
         self.writer = csv.writer(f)
 
         row_data = ["street", "city", "postalcode", "lon", "lat"]
 
         self.writer.writerow(row_data)
-
-    def get_address_data(self, row):
-        # Le data commence à la row 3
-        # Le data commence à la col 2
-        return_address = ''
-
-        return_address += self.workbook.iloc[row, 2]
-        return_address += ', ' + self.workbook.iloc[row, 3]
-        return_address += ', ' + self.workbook.iloc[row, 4]
-
-        return return_address
 
     def get_address_data_dict(self, row):
         # Le data commence à la row 3
